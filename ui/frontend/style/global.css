@@ -1,0 +1,56 @@
+html {
+  height: 100%;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+}
+
+body {
+  transition: all 0.2s ease-out;
+  min-height: 100%;
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* remove IE default input clear button since we handle this ourselves  */
+input::-ms-clear {
+  display: none;
+}
+
+/* try to remove firefox default dotted line on focus since we handle this ourselves */
+::-moz-focus-inner {
+  border: 0;
+}
+
+:-moz-focusring {
+  outline: 2px dashed white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #DDD;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #EEE;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #EEE;
+}
