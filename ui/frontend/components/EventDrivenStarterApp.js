@@ -31,8 +31,6 @@ class EventDrivenStarterApp extends React.Component {
       </Switch>
     )
 
-    const counter = <CounterContainer />
-
     return (
       <Layout
         header={header}

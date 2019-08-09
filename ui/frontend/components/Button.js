@@ -1,42 +1,5 @@
 import React from 'react'
-import Layout from '../layout/Layout'
-import { fontFamilySansSerif } from '../utils/fontUtil'
-
-const bgColor = 'green'
-const bgColorDark = 'DarkGreen'
-const bgColorDisabled = 'DarkGray'
-
-const styleDefault = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  color: 'white',
-  background: 'green',
-  borderRadius: '0.618em',
-  border: 'transparent',
-  textAlign: 'center',
-  fontSize: '1em',
-  margin: 0,
-  padding: '0.618em',
-  fontFamily: fontFamilySansSerif(),
-}
-
-const styleHoverDefault = {
-  filter: 'brightness(130.9%)',
-}
-
-const stylePressDefault = {
-  boxShadow: 'none',
-  filter: 'brightness(161.8%)',
-}
-
-const styleFocusDefault = {
-  outline: '2px dashed white',
-}
-
-const styleDisableDefault = {
-  background: `${bgColorDisabled}`,
-}
+import { mergeButtonStyles } from '../style/buttonStyles';
 
 export default class Button extends React.Component {
   constructor(props) {
@@ -60,10 +23,7 @@ export default class Button extends React.Component {
   }
 
   handleClick = event => {
-    const { onClick } = this.props
-    if (onClick) {
-      onClick(event)
-    }
+    console.log('Button *click*')
   }
 
   handleMouseOver = event => {
@@ -123,10 +83,6 @@ export default class Button extends React.Component {
   }
 
   handleFocus = event => {
-    const { onFocus } = this.props
-    if (onFocus) {
-      onFocus(event)
-    }
     this.setState((state, props) => {
       return {
         ...state,
@@ -136,10 +92,6 @@ export default class Button extends React.Component {
   }
 
   handleBlur = event => {
-    const { onBlur } = this.props
-    if (onBlur) {
-      onBlur(event)
-    }
     this.setState((state, props) => {
       return {
         ...state,
@@ -151,12 +103,6 @@ export default class Button extends React.Component {
   render() {
     const {
       id,
-      onClick,
-      style,
-      styleHover,
-      stylePress,
-      styleFocus,
-      styleDisable,
       title,
       text,
       type,
@@ -166,17 +112,16 @@ export default class Button extends React.Component {
       disabledText,
     } = this.props
 
-    const styleMerged = {
-      ...styleDefault,
-      ...style,
-      ...(this.state.hovering ? { ...styleHoverDefault, ...styleHover } : {}),
-      ...(this.state.pressing ? { ...stylePressDefault, ...stylePress } : {}),
-      ...(this.state.focusing ? { ...styleFocusDefault, ...styleFocus } : {}),
-      ...(disabled ? { ...styleDisableDefault, ...styleDisable } : {}),
-    }
+    const styleMerged = mergeButtonStyles(
+      this.state.hovering,
+      this.state.pressing,
+      this.state.focusing,
+      disabled
+    )
 
     return (
       <button
+        id={id}
         style={styleMerged}
         onClick={this.handleClick}
         onMouseOver={this.handleMouseOver}
@@ -191,9 +136,6 @@ export default class Button extends React.Component {
         aria-selected={ariaSelected}
         aria-label={title || text}
         disabled={disabled}
-        ref={button => {
-          this.button = button
-        }}
       >
         {disabled ? disabledText : text}
       </button>

@@ -19,10 +19,10 @@ select {
   font-size: inherit;
 }
 
-a:hover,
+/* a:hover,
 button:hover {
   cursor: pointer;
-}
+} */
 
 button:disabled {
   cursor: not-allowed;
@@ -39,7 +39,9 @@ input::-ms-clear {
 }
 
 :-moz-focusring {
-  outline: 2px dashed white;
+  outline-style: dashed;
+  outline-width: 2px;
+  outline-offset: 10px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

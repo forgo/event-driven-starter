@@ -19,7 +19,7 @@ class Header extends React.Component {
   render() {
     return (
       <div style={styleContainer}>
-        <h1 style={styleH1}>EVENT-DRIVEN STARTER</h1>
+        <h1 style={styleH1}>React Hooks</h1>
         <NavigationContainer />
       </div>
     )

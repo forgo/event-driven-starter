@@ -1,4 +1,5 @@
 import React from 'react'
+import HookButton from './HookButton'
 import { fontFamilyMonospace } from '../utils/fontUtil'
 
 const styleInputContainerDefault = {
@@ -245,7 +246,8 @@ class Input extends React.Component {
             this.input = input
           }}
         />
-        <button
+
+        <HookButton
           type="button"
           style={styleClearButtonMerged}
           onClick={this.handleClear}
